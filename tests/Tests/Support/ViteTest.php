@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace Tests\Support;
 
 use Exception;
-use Omega\Support\Vite;
+use Omega\View\Vite;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tests\FixturesPathTrait;

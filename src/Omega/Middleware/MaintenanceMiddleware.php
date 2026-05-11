@@ -26,7 +26,7 @@ use Omega\Http\Response;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 
-use function Omega\Support\redirect;
+use function Omega\Http\redirect;
 
 /**
  * Middleware to handle application maintenance mode.

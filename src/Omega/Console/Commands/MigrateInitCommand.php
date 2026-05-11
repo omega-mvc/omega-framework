@@ -6,8 +6,8 @@ namespace Omega\Console\Commands;
 
 use Omega\Console\Attribute\AsCommand;
 use Omega\Database\Schema\Table\Create;
-use Omega\Support\Facades\PDO;
-use Omega\Support\Facades\Schema;
+use Omega\Database\Facades\PDO;
+use Omega\Database\Facades\Schema;
 use Symfony\Component\Console\Input\InputOption;
 
 #[AsCommand(
@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\InputOption;
         'database' => ['d', InputOption::VALUE_OPTIONAL, 'The database connection to use'],
     ]
 )]
-final class MigrateInitCommand extends AbstractMigrationCommand
+final class MigrateInitCommand extends AbstractMigration
 {
     /**
      * Initialize the migration system by creating the migration table if it does not exist.

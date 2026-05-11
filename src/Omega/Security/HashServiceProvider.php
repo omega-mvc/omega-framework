@@ -11,7 +11,7 @@ use Omega\Security\Hashing\BcryptHasher;
 use Omega\Security\Hashing\DefaultHasher;
 use Omega\Security\Hashing\HashManager;
 use Omega\Container\AbstractServiceProvider;
-use Omega\Support\Facades\Config;
+use Omega\Config\Facade\Config;
 
 class HashServiceProvider extends AbstractServiceProvider
 {

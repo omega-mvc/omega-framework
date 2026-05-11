@@ -24,7 +24,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 
 /**
  * Class CacheFactoryTest

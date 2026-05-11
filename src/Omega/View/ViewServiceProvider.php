@@ -9,14 +9,14 @@ use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Http\Response;
 use Omega\Container\AbstractServiceProvider;
-use Omega\Support\Vite;
+use Omega\View\Vite;
 use Omega\View\Templator\DirectiveTemplator;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 
 use function array_merge;
 use function file_exists;
-use function Omega\Support\get_path;
+use function Omega\Application\get_path;
 
 class ViewServiceProvider extends AbstractServiceProvider
 {

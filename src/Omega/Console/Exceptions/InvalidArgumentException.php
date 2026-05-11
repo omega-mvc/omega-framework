@@ -12,7 +12,7 @@
 
 declare(strict_types=1);
 
-namespace Omega\Console\Exception;
+namespace Omega\Console\Exceptions;
 
 use LogicException;
 

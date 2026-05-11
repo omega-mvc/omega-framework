@@ -9,7 +9,7 @@ use Omega\Console\Attribute\AsCommand;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Facades\Schema;
+use Omega\Database\Facades\Schema;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
@@ -24,7 +24,7 @@ use Symfony\Component\Console\Input\InputOption;
         'no-interact' => [null, InputOption::VALUE_NONE, '']
     ]
 )]
-final class DatabaseWipeCommand extends AbstractMigrationCommand
+final class DatabaseWipeCommand extends AbstractMigration
 {
     /**
      * Drop the target database after confirmation and environment validation.

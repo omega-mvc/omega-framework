@@ -9,7 +9,7 @@ use Omega\Console\Attribute\AsCommand;
 use Omega\Console\Style;
 use Symfony\Component\Console\Input\InputOption;
 
-use function Omega\Support\os_detect;
+use function Omega\Application\os_detect;
 use function shell_exec;
 
 /**

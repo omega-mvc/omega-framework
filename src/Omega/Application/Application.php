@@ -23,9 +23,9 @@ use ReflectionException;
 
 use function file_exists;
 use function rtrim;
-use function Omega\Support\env;
-use function Omega\Support\get_path;
-use function Omega\Support\set_path;
+use function Omega\Environment\env;
+use function Omega\Application\get_path;
+use function Omega\Application\set_path;
 
 /**
  * Default Omega application implementation.
@@ -85,6 +85,7 @@ class Application extends AbstractApplication
             'path.provider'           => $this->basePath . set_path('app.Providers'),
             'path.view'               => $this->basePath . set_path('resources.views'),
             'path.storage'            => $this->basePath . set_path('storage'),
+            'path.logs'               => $this->basePath . set_path('storage.logs'),
             'path.public'             => $this->basePath . set_path('public'),
             'path.migration'          => $this->basePath . set_path('database.migration'),
             'path.seeder'             => $this->basePath . set_path('database.seeders'),

@@ -24,7 +24,7 @@ use Omega\Http\Exceptions\HttpException;
 use Omega\Http\Http;
 use Omega\Http\Request;
 use Omega\Http\Response;
-use Omega\Support\PackageManifest;
+use Omega\Application\ApplicationManifest;
 use Omega\Text\Str;
 use Omega\View\Templator;
 use Omega\View\TemplatorFinder;
@@ -44,7 +44,7 @@ use function str_contains;
  * Unit tests for Omega exception handling and HTTP components.
  *
  * Verifies ExceptionHandler, HttpException, Http, Request, Response,
- * PackageManifest, Str, Templator, and TemplatorFinder behavior.
+ * ApplicationManifest, Str, Templator, and TemplatorFinder behavior.
  * Ensures exceptions are reported, rendered, and JSON responses handled.
  *
  * @category  Tests
@@ -64,7 +64,7 @@ use function str_contains;
 #[CoversClass(Http::class)]
 #[CoversClass(Request::class)]
 #[CoversClass(Response::class)]
-#[CoversClass(PackageManifest::class)]
+#[CoversClass(ApplicationManifest::class)]
 #[CoversClass(Str::class)]
 #[CoversClass(Templator::class)]
 #[CoversClass(TemplatorFinder::class)]
@@ -99,7 +99,7 @@ final class ExceptionHandlerTest extends TestCase
     {
         $this->app = new Application($this->setFixturePath('/fixtures/application-read/'));
 
-        $this->app->set(PackageManifest::class, fn () => new PackageManifest(
+        $this->app->set(ApplicationManifest::class, fn () => new ApplicationManifest(
             basePath: $this->app->get('path.base'),
             applicationCachePath: $this->app->getApplicationCachePath(),
             vendorPath: '/package/'

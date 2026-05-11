@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Omega\Database\Query;
 
-use Omega\Database\ConnectionInterface;
+use Omega\Database\Connectioninterface;
 
 /**
  * Query Builder.

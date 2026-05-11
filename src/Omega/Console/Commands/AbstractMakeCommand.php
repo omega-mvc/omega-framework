@@ -15,7 +15,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionClass;
 use ReflectionException;
-use function Omega\Support\path;
+use function Omega\Application\path;
 
 abstract class AbstractMakeCommand extends AbstractCommand
 {

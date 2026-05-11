@@ -23,7 +23,7 @@ use Symfony\Component\Console\Input\InputOption;
         'take'     => [null, InputOption::VALUE_OPTIONAL, 'Limit the number of migrations to run']
     ]
 )]
-final class MigrateRollbackCommand extends AbstractMigrationCommand
+final class MigrateRollbackCommand extends AbstractMigration
 {
     /**
      * Roll back one or more batches of migrations.

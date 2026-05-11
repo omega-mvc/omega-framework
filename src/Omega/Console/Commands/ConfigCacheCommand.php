@@ -7,7 +7,7 @@ namespace Omega\Console\Commands;
 use Omega\Config\ConfigRepository;
 use Omega\Console\AbstractCommand;
 use Omega\Console\Attribute\AsCommand;
-use Omega\Support\Bootstrap\ConfigProviders;
+use Omega\Config\Bootstrapper\ConfigBootstrapper;
 use Throwable;
 
 use function file_exists;
@@ -27,7 +27,7 @@ final class ConfigCacheCommand extends AbstractCommand
     public function __invoke(): int
     {
         try {
-            new ConfigProviders()->bootstrap($this->app);
+            new ConfigBootstrapper()->bootstrap($this->app);
 
             $cachePath = $this->app->getApplicationCachePath() . 'config.php';
             if (file_exists($cachePath)) {

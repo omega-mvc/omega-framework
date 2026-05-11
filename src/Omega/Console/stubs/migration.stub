@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Omega\Database\Schema\Table\Create;
-use Omega\Support\Facades\Schema;
+use Omega\Database\Facades\Schema;
 
 return [
     'up' => [

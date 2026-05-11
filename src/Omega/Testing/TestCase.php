@@ -23,7 +23,7 @@ use Omega\Http\Http;
 use Omega\Http\Request;
 use Omega\Http\Response;
 use Omega\Container\AbstractServiceProvider;
-use Omega\Support\Facades\AbstractFacade;
+use Omega\Facade\AbstractFacade;
 use PHPUnit\Framework\TestCase as PhpUnitTestCase;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;

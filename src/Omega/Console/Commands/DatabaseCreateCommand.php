@@ -9,7 +9,7 @@ use Omega\Console\Attribute\AsCommand;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Facades\Schema;
+use Omega\Database\Facades\Schema;
 use PDOException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -28,7 +28,7 @@ use function str_contains;
         'no-interact' => [null, InputOption::VALUE_NONE, '']
     ]
 )]
-final class DatabaseCreateCommand extends AbstractMigrationCommand
+final class DatabaseCreateCommand extends AbstractMigration
 {
     /**
      * Create the target database and initialize the migration table if needed.

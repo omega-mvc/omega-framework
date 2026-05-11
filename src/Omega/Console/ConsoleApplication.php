@@ -20,10 +20,10 @@ use Omega\Console\Attribute\AsCommand;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Bootstrap\BootProviders;
-use Omega\Support\Bootstrap\ConfigProviders;
-use Omega\Support\Bootstrap\RegisterFacades;
-use Omega\Support\Bootstrap\RegisterProviders;
+use Omega\Application\Bootstrapper\BootProviders;
+use Omega\Config\Bootstrapper\ConfigBootstrapper;
+use Omega\Facade\Bootstrapper\FacadeBootstrapper;
+use Omega\Application\Bootstrapper\RegisterProviders;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionClass;
@@ -40,7 +40,7 @@ use function file_exists;
 use function getenv;
 use function is_array;
 use function is_dir;
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 use function putenv;
 use function str_contains;
 
@@ -74,8 +74,8 @@ class ConsoleApplication
 {
     /** @var array<int, class-string> The list of bootstrapper classes to run during initialization. */
     protected array $bootstrappers = [
-        ConfigProviders::class,
-        RegisterFacades::class,
+        ConfigBootstrapper::class,
+        FacadeBootstrapper::class,
         RegisterProviders::class,
         BootProviders::class,
     ];

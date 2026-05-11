@@ -1,7 +1,7 @@
 <?php
 
 use Omega\Database\Schema\Table\Create;
-use Omega\Support\Facades\Schema;
+use Omega\Database\Facades\Schema;
 
 return [
     'up' => [

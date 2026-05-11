@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omega\Router\Exception;
+namespace Omega\Router\Exceptions;
 
 use Exception;
 

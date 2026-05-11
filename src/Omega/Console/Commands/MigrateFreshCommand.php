@@ -26,7 +26,7 @@ use Throwable;
         'database' => ['d', InputOption::VALUE_OPTIONAL, 'The database connection to use']
     ]
 )]
-final class MigrateFreshCommand extends AbstractMigrationCommand
+final class MigrateFreshCommand extends AbstractMigration
 {
     /**
      * Drops and recreates the database, then runs all migrations from scratch.

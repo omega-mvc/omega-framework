@@ -19,7 +19,7 @@ use Symfony\Component\Console\Input\InputOption;
         'seed'     => [null, InputOption::VALUE_NONE, 'Seed the database after migrating']
     ]
 )]
-final class MigrateRefreshCommand extends AbstractMigrationCommand
+final class MigrateRefreshCommand extends AbstractMigration
 {
     /**
      * Reset all migrations and immediately re-run them.

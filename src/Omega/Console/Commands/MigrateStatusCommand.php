@@ -10,7 +10,7 @@ use Omega\Console\Attribute\AsCommand;
     name: 'migrate:status',
     description: 'Show migration status.'
 )]
-final class MigrateStatusCommand extends AbstractMigrationCommand
+final class MigrateStatusCommand extends AbstractMigration
 {
     /**
      * Display the current migration status and batch numbers.

@@ -17,7 +17,7 @@ namespace Tests;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
 use function ltrim;
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 
 /**
  * Trait FixturesPathTrait

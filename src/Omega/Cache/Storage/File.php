@@ -37,7 +37,7 @@ use function is_dir;
 use function is_int;
 use function is_null;
 use function mkdir;
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 use function serialize;
 use function sha1;
 use function str_split;

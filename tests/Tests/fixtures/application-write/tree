@@ -1,0 +1,569 @@
+tests
+├── Tests
+│   ├── Application
+│   │   └── ApplicationTest.php
+│   ├── Cache
+│   │   ├── CacheFactoryTest.php
+│   │   └── Storage
+│   │       ├── FileTest.php
+│   │       └── MemoryTest.php
+│   ├── Collection
+│   │   ├── CollectionImmutableTest.php
+│   │   ├── CollectionTest.php
+│   │   └── DataGetTest.php
+│   ├── Config
+│   │   ├── ConfigBuilderTest.php
+│   │   ├── ConfigTest.php
+│   │   └── Source
+│   │       ├── ArrayTest.php
+│   │       ├── JsonTest.php
+│   │       ├── SourceTest.php
+│   │       └── TestConfigurationSource.php
+│   ├── Container
+│   │   ├── AbstractTestContainer.php
+│   │   ├── AliasTest.php
+│   │   ├── ArrayAccessTest.php
+│   │   ├── BindingTest.php
+│   │   ├── BuildTest.php
+│   │   ├── CallTest.php
+│   │   ├── FlushTest.php
+│   │   ├── InjectOnTest.php
+│   │   ├── InvokerTest.php
+│   │   ├── MemoryLeakTest.php
+│   │   ├── ReflectionCacheTest.php
+│   │   ├── ReflectionClassTest.php
+│   │   ├── ResolutionTest.php
+│   │   ├── ResolverTest.php
+│   │   └── Support
+│   │       ├── AnotherService.php
+│   │       ├── Attribute
+│   │       │   ├── MyClassAttribute.php
+│   │       │   ├── MyMethodAttribute.php
+│   │       │   └── MyPropertyAttribute.php
+│   │       ├── CallableClass.php
+│   │       ├── CallableNoDeps.php
+│   │       ├── ChildClass.php
+│   │       ├── CircularA.php
+│   │       ├── CircularB.php
+│   │       ├── ClassWithAttributes.php
+│   │       ├── ClassWithMethods.php
+│   │       ├── ClassWithMissingDependency.php
+│   │       ├── ClassWithNullableUnionTypeConstructor.php
+│   │       ├── ClassWithProperties.php
+│   │       ├── ClassWithUnionTypeConstructor.php
+│   │       ├── ConcreteService.php
+│   │       ├── DeepA.php
+│   │       ├── DeepB.php
+│   │       ├── DeepC.php
+│   │       ├── Dependant.php
+│   │       ├── Dependency.php
+│   │       ├── DependencyClass.php
+│   │       ├── DummyClass.php
+│   │       ├── DummyStaticClass.php
+│   │       ├── InjectionUsingAttribute.php
+│   │       ├── InjectionUsingAttributeOnParameter.php
+│   │       ├── InjectionUsingAttributeOnProperty.php
+│   │       ├── InvokableClass.php
+│   │       ├── InvokableInvokeClass.php
+│   │       ├── MultipleSetterClass.php
+│   │       ├── MyService.php
+│   │       ├── NestedDependencyClass.php
+│   │       ├── NonSetterClass.php
+│   │       ├── ParentClass.php
+│   │       ├── PrivateConstructorClass.php
+│   │       ├── ScalarConstructorClass.php
+│   │       ├── ScalarSetterClass.php
+│   │       ├── Service.php
+│   │       ├── ServiceInterface.php
+│   │       ├── SetterInjectionClass.php
+│   │       ├── StaticSetterClass.php
+│   │       ├── TypedConstructorClass.php
+│   │       ├── UnionDependencyOne.php
+│   │       ├── UnionDependencyTwo.php
+│   │       ├── UnionTypeConstructorClass.php
+│   │       ├── UnresolvableClass.php
+│   │       ├── UnresolvableInterface.php
+│   │       └── UnresolvableSetterClass.php
+│   ├── Cron
+│   │   ├── BasicCronTest.php
+│   │   ├── CronTimeTest.php
+│   │   └── ScheduleTest.php
+│   ├── Database
+│   │   ├── AbstractTestDatabase.php
+│   │   ├── Asserts
+│   │   │   └── UserTrait.php
+│   │   ├── DatabaseManagerTest.php
+│   │   ├── Model
+│   │   │   ├── BaseModelTest.php
+│   │   │   ├── BaseMultiModelTest.php
+│   │   │   ├── CollectionModelTest.php
+│   │   │   └── CustomModelTest.php
+│   │   ├── Pdo
+│   │   │   ├── ConfigsTest.php
+│   │   │   ├── LogsTest.php
+│   │   │   ├── LostConnectionTest.php
+│   │   │   └── TransactionTest.php
+│   │   ├── Query
+│   │   │   ├── DeleteTest.php
+│   │   │   ├── InsertTest.php
+│   │   │   ├── JoinTest.php
+│   │   │   ├── LimitTest.php
+│   │   │   ├── ReplaceTest.php
+│   │   │   ├── Schema
+│   │   │   │   ├── DB
+│   │   │   │   │   ├── CreateTest.php
+│   │   │   │   │   └── DropTest.php
+│   │   │   │   └── Table
+│   │   │   │       ├── AlterTest.php
+│   │   │   │       ├── CreateTest.php
+│   │   │   │       ├── DataTypesTest.php
+│   │   │   │       ├── DropTest.php
+│   │   │   │       └── RawTest.php
+│   │   │   ├── SelectTest.php
+│   │   │   └── UpdateTest.php
+│   │   ├── RealDatabase
+│   │   │   ├── DeleteTest.php
+│   │   │   ├── InsertTest.php
+│   │   │   ├── JoinTest.php
+│   │   │   ├── ReplaceTest.php
+│   │   │   ├── Schema
+│   │   │   │   ├── DB
+│   │   │   │   │   ├── CreateTest.php
+│   │   │   │   │   └── DropTest.php
+│   │   │   │   └── Table
+│   │   │   │       ├── AlterTest.php
+│   │   │   │       ├── CreateTest.php
+│   │   │   │       ├── DataTypesTest.php
+│   │   │   │       ├── DropTest.php
+│   │   │   │       ├── RawTest.php
+│   │   │   │       └── TruncateTest.php
+│   │   │   ├── SelectTest.php
+│   │   │   ├── SubQueryTest.php
+│   │   │   └── UpdateTest.php
+│   │   ├── SchemaTest.php
+│   │   ├── Support
+│   │   │   ├── Order.php
+│   │   │   ├── Profile.php
+│   │   │   └── User.php
+│   │   └── TestDatabaseQuery.php
+│   ├── Exceptions
+│   │   └── ExceptionHandlerTest.php
+│   ├── FixturesPathTrait.php
+│   ├── Http
+│   │   ├── HeaderCollectionTest.php
+│   │   ├── JsonResponseTest.php
+│   │   ├── KernelHandleExceptionTest.php
+│   │   ├── KernelTerminateTest.php
+│   │   ├── KernelTest.php
+│   │   ├── MiddlewareTest.php
+│   │   ├── RedirectResponseTest.php
+│   │   ├── RequestTest.php
+│   │   ├── ResponseCollectionTest.php
+│   │   ├── ResponseTest.php
+│   │   ├── StreamedResponseTest.php
+│   │   ├── Support
+│   │   │   ├── ClassA.php
+│   │   │   ├── ClassB.php
+│   │   │   ├── ClassC.php
+│   │   │   ├── ClassD.php
+│   │   │   └── TestKernelTerminate.php
+│   │   ├── Upload
+│   │   │   └── UploadFileTest.php
+│   │   └── UrlTest.php
+│   ├── Macroable
+│   │   └── MacroableTest.php
+│   ├── Middleware
+│   │   ├── PreventRequestInMaintenanceTest.php
+│   │   └── ThrottleMiddlewareTest.php
+│   ├── RateLimiter
+│   │   ├── Policy
+│   │   │   ├── FixedWindowTest.php
+│   │   │   └── NoLimiterTest.php
+│   │   ├── RateLimiterFactoryTest.php
+│   │   └── RateLimiterTest.php
+│   ├── Router
+│   │   ├── Attribute
+│   │   │   ├── TestBasicRouteAttribute.php
+│   │   │   └── TestRouteAttribute.php
+│   │   ├── BasicRouteTest.php
+│   │   ├── GroupRouteTest.php
+│   │   ├── NamedParameterRouteTest.php
+│   │   ├── RouteDispatchTest.php
+│   │   ├── Support
+│   │   │   ├── DispatcherTrait.php
+│   │   │   ├── EmptyRouteClassController.php
+│   │   │   ├── RouteClassController.php
+│   │   │   ├── SomeClass.php
+│   │   │   └── TestMiddleware.php
+│   │   ├── UrlBuilderInvalidArgumentTest.php
+│   │   └── UrlBuilderTest.php
+│   ├── Security
+│   │   ├── CryptTest.php
+│   │   └── Hashing
+│   │       ├── HasherMangerTest.php
+│   │       └── HasherTest.php
+│   ├── Support
+│   │   ├── AbstractServiceProviderTest.php
+│   │   ├── AddonServiceProviderTest.php
+│   │   ├── Bootstrap
+│   │   │   ├── BootProvidersTest.php
+│   │   │   ├── ConfigProvidersTest.php
+│   │   │   ├── HandleExceptionsTest.php
+│   │   │   ├── RegisterFacadesTest.php
+│   │   │   ├── RegisterProvidersTest.php
+│   │   │   └── Support
+│   │   │       ├── TestBootstrapProvider.php
+│   │   │       ├── TestCollectionFacade.php
+│   │   │       ├── TestHandleExceptions.php
+│   │   │       ├── TestLog.php
+│   │   │       ├── TestRegisterProvider.php
+│   │   │       ├── TestRegisterServiceProvider.php
+│   │   │       ├── TestServiceProvider.php
+│   │   │       └── TestVendorServiceProvider.php
+│   │   ├── EnvTest.php
+│   │   ├── Facades
+│   │   │   ├── FacadeTest.php
+│   │   │   ├── Sample
+│   │   │   │   └── FacadesTestClass.php
+│   │   │   └── Support
+│   │   │       ├── NullFacade.php
+│   │   │       └── TestAbstractFacade.php
+│   │   ├── Helper
+│   │   │   ├── HelperTest.php
+│   │   │   ├── RedirectResponseTest.php
+│   │   │   └── ViewTest.php
+│   │   ├── PackageManifestTest.php
+│   │   ├── ViteTagTest.php
+│   │   └── ViteTest.php
+│   ├── Template
+│   │   └── BasicTemplateTest.php
+│   ├── Testing
+│   │   ├── TestCaseTest.php
+│   │   ├── TestJsonResponseTest.php
+│   │   ├── TestResponseTest.php
+│   │   └── Traits
+│   │       └── ResponseStatusTest.php
+│   ├── Text
+│   │   ├── RegexStrTest.php
+│   │   ├── StrMacroTest.php
+│   │   ├── StrTest.php
+│   │   ├── TextAPITest.php
+│   │   └── TextTest.php
+│   ├── Time
+│   │   ├── HelperFunctionTest.php
+│   │   ├── NowTest.php
+│   │   └── Traits
+│   │       └── DateTimeFormatTraitTest.php
+│   ├── View
+│   │   ├── RenderViewTest.php
+│   │   ├── Templator
+│   │   │   ├── BooleanTest.php
+│   │   │   ├── CommentTest.php
+│   │   │   ├── ComponentTest.php
+│   │   │   ├── DirectiveTest.php
+│   │   │   ├── EachBreakTest.php
+│   │   │   ├── EachContinueTest.php
+│   │   │   ├── EachTest.php
+│   │   │   ├── IfTest.php
+│   │   │   ├── IncludeTest.php
+│   │   │   ├── JsonTest.php
+│   │   │   ├── NamingTest.php
+│   │   │   ├── ParentDataTest.php
+│   │   │   ├── PhpTest.php
+│   │   │   ├── SectionTest.php
+│   │   │   ├── SetTest.php
+│   │   │   ├── TestClassComponent.php
+│   │   │   └── UseTest.php
+│   │   ├── TemplatorFinderTest.php
+│   │   └── TemplatorTest.php
+│   └── fixtures
+│       ├── .gitignore
+│       ├── AssetCommand.php
+│       ├── CacheCommand.php
+│       ├── IndexController.php
+│       ├── application-read
+│       │   ├── bootstrap
+│       │   │   └── cache
+│       │   │       ├── packages.php
+│       │   │       └── route.php
+│       │   ├── config
+│       │   │   └── config.php
+│       │   ├── console
+│       │   │   └── database
+│       │   │       ├── migration
+│       │   │       │   └── 2023_08_07_181000_users.php
+│       │   │       ├── seeders
+│       │   │       │   ├── BasicSeeder.php
+│       │   │       │   ├── ChainSeeder.php
+│       │   │       │   ├── CustomNamespaceSeeder.php
+│       │   │       │   ├── ExistSeeder.php
+│       │   │       │   └── UserSeeder.php
+│       │   │       └── vendor-migration
+│       │   │           └── 2024_06_12_070600_clients.php
+│       │   ├── package
+│       │   │   └── installed.json
+│       │   ├── routes
+│       │   │   └── web.php
+│       │   ├── storage
+│       │   │   └── app
+│       │   │       ├── down
+│       │   │       └── maintenance.php
+│       │   ├── storage2
+│       │   │   └── app
+│       │   │       ├── down
+│       │   │       └── maintenance.php
+│       │   ├── storage3
+│       │   │   └── app
+│       │   │       ├── down
+│       │   │       └── maintenance.php
+│       │   ├── upload
+│       │   │   ├── multi_file0.txt
+│       │   │   ├── multi_file1.txt
+│       │   │   ├── test123.tmp
+│       │   │   └── test234.tmp
+│       │   └── view
+│       │       └── test.php
+│       ├── application-write
+│       │   ├── bootstrap
+│       │   │   ├── cache
+│       │   │   │   └── .gitignore
+│       │   │   └── cache-missing
+│       │   ├── config
+│       │   │   └── .gitignore
+│       │   ├── console
+│       │   │   ├── commands
+│       │   │   │   ├── AssetCommand.php
+│       │   │   │   ├── AssetController.php
+│       │   │   │   └── asset.template.php
+│       │   │   └── database
+│       │   │       ├── migration
+│       │   │       │   └── .gitignore
+│       │   │       └── seeders
+│       │   │           └── BasicSeeder.php
+│       │   ├── copy
+│       │   │   ├── file.txt
+│       │   │   ├── from
+│       │   │   │   ├── file.txt
+│       │   │   │   ├── folder
+│       │   │   │   │   └── file.txt
+│       │   │   │   └── folder-nest
+│       │   │   │       ├── file.txt
+│       │   │   │       └── folder
+│       │   │   │           └── file.txt
+│       │   │   └── to
+│       │   │       ├── existing-file.txt
+│       │   │       ├── existing.txt
+│       │   │       ├── folder
+│       │   │       │   └── file.txt
+│       │   │       └── folders
+│       │   │           └── .gitignore
+│       │   ├── manifest
+│       │   ├── manifest1
+│       │   │   └── public
+│       │   │       └── build
+│       │   │           └── manifest.json
+│       │   ├── package
+│       │   │   └── .gitignore
+│       │   ├── recursive_target
+│       │   │   └── subdir
+│       │   │       └── test.txt
+│       │   ├── recursive_test
+│       │   │   └── subdir
+│       │   │       └── test.txt
+│       │   ├── storage
+│       │   │   └── app
+│       │   │       ├── .gitignore
+│       │   │       └── cache
+│       │   │           └── .gitignore
+│       │   ├── tmp
+│       │   │   ├── existing
+│       │   │   │   └── file.txt
+│       │   │   └── exists
+│       │   ├── tree
+│       │   ├── upload
+│       │   │   └── .gitignore
+│       │   └── view_cache
+│       │       └── .gitignore
+│       ├── bootstrap
+│       │   └── cache
+│       │       ├── .gitignore
+│       │       └── config.php
+│       ├── bootstrap1
+│       │   └── bootstrap
+│       │       └── cache
+│       │           └── .gitignore
+│       ├── cache
+│       │   ├── 05
+│       │   │   └── db
+│       │   │       └── 05db376c6fa6453bd9c80b31d2c675977851be34
+│       │   ├── 0a
+│       │   │   └── 19
+│       │   │       └── 0a1932642352fe6885e3ae69b2a5a29f69a9c024
+│       │   ├── 10
+│       │   │   └── 73
+│       │   │       └── 1073ab6cda4b991cd29f9e83a307f34004ae9327
+│       │   ├── 39
+│       │   │   └── 1b
+│       │   ├── 4c
+│       │   │   └── 6f
+│       │   │       └── 4c6f4b360e6603ee46a2d45a57a9df389cbe1b44
+│       │   ├── 6d
+│       │   │   └── f3
+│       │   │       └── 6df377ec91a0df5f054484fbfd0c13d7ed27d832
+│       │   ├── 71
+│       │   │   └── 06
+│       │   │       └── 71069517bdf158dfd4ed33c11fdfb37607718a46
+│       │   ├── 7f
+│       │   │   └── a8
+│       │   │       └── 7fa869f45d93ab6f7df53a27ac75792f2a7de49a
+│       │   ├── af
+│       │   │   └── 06
+│       │   │       └── af065e03e22fe1f5f95b8ce9f4761c74da076857
+│       │   ├── c6
+│       │   │   └── e3
+│       │   │       └── c6e39e016b9538fea99886c071369e4823221bd2
+│       │   └── d1
+│       │       └── 02
+│       ├── config
+│       │   ├── content.json
+│       │   ├── content.txt
+│       │   └── malformed.json
+│       ├── exceptions
+│       │   ├── 500.php
+│       │   └── cee631121c2ec9232f3a2f028ad5c89b.php
+│       ├── support
+│       │   ├── .env.test
+│       │   ├── bootstrap
+│       │   │   └── cache
+│       │   │       └── packages.php
+│       │   ├── cache
+│       │   │   ├── .gitignore
+│       │   │   └── 098f6bcd4621d373cade4e832627b4f6.php
+│       │   ├── hot
+│       │   │   └── public
+│       │   │       ├── build
+│       │   │       │   └── manifest.json
+│       │   │       └── hot
+│       │   ├── manifest
+│       │   │   └── public
+│       │   │       ├── build
+│       │   │       │   ├── custom-manifest.json
+│       │   │       │   ├── invalid.json
+│       │   │       │   ├── manifest.json
+│       │   │       │   └── unreadable.json
+│       │   │       └── preload
+│       │   │           └── manifest.json
+│       │   └── view
+│       │       └── test.php
+│       ├── template
+│       │   ├── basic_class
+│       │   ├── class_with_complex_comment
+│       │   ├── class_with_complex_const
+│       │   ├── class_with_complex_methods
+│       │   ├── class_with_complex_property
+│       │   ├── class_with_custom_template
+│       │   └── class_with_trait_property_method
+│       └── view
+│           ├── caches
+│           │   ├── .gitignore
+│           │   ├── .php0517bd06a6f9ee173a8b5d6d1bbb3705
+│           │   ├── .php16e338e823c096b4edb5de381bd65e74
+│           │   ├── .php1daee5819a63e1b838a793959c402dd4
+│           │   ├── .php32648c0b8d01644bd51a6b7ff390d597
+│           │   ├── .php3b386b473f97afea3bee5b72e1f3a63d
+│           │   ├── .php43a61fb699691e90af30f94d15414a0a
+│           │   ├── .php5bfee6a040d4cd8072f43118c4d56f2d
+│           │   ├── .php6ddde1b5fdd3eaa11ca376a3ff910c2e
+│           │   ├── .php72626701608154bc711c0545af0b522a
+│           │   ├── .php872b97ca230394aba8221f9a977fa931
+│           │   ├── .php943419f8fa120fca06f18711503c7cbd
+│           │   ├── .php9a22f4166e7c10ae7611964a4cff298e
+│           │   ├── .phpa47697e2ef868c25a2faf6c6dfc70eec
+│           │   ├── .phpbc43890e2fcf01d98a0a9adaf1997af5
+│           │   ├── .phpc6fc11767193490af061c04beb6cea9d
+│           │   ├── .phpd3e07f4a05d393baddd94639c15dae81
+│           │   ├── .phpd4f83da32f170024ce37d9767f70dde3
+│           │   ├── .phpfc337dc1c190be6860906a650819f6ec
+│           │   ├── 0517bd06a6f9ee173a8b5d6d1bbb3705
+│           │   ├── 16e338e823c096b4edb5de381bd65e74
+│           │   ├── 1daee5819a63e1b838a793959c402dd4
+│           │   ├── 32648c0b8d01644bd51a6b7ff390d597
+│           │   ├── 3b386b473f97afea3bee5b72e1f3a63d
+│           │   ├── 43a61fb699691e90af30f94d15414a0a
+│           │   ├── 5bfee6a040d4cd8072f43118c4d56f2d
+│           │   ├── 6ddde1b5fdd3eaa11ca376a3ff910c2e
+│           │   ├── 72626701608154bc711c0545af0b522a
+│           │   ├── 872b97ca230394aba8221f9a977fa931
+│           │   ├── 943419f8fa120fca06f18711503c7cbd
+│           │   ├── 9a22f4166e7c10ae7611964a4cff298e
+│           │   ├── a47697e2ef868c25a2faf6c6dfc70eec
+│           │   ├── bc43890e2fcf01d98a0a9adaf1997af5
+│           │   ├── c6fc11767193490af061c04beb6cea9d
+│           │   ├── d3e07f4a05d393baddd94639c15dae81
+│           │   ├── d4f83da32f170024ce37d9767f70dde3
+│           │   └── fc337dc1c190be6860906a650819f6ec
+│           ├── caches0517bd06a6f9ee173a8b5d6d1bbb3705.php
+│           ├── caches16e338e823c096b4edb5de381bd65e74.php
+│           ├── caches32648c0b8d01644bd51a6b7ff390d597.php
+│           ├── caches3b386b473f97afea3bee5b72e1f3a63d.php
+│           ├── caches43a61fb699691e90af30f94d15414a0a.php
+│           ├── caches5ad8064189d4eecc9c8c0768ebfa151e.php
+│           ├── caches5bfee6a040d4cd8072f43118c4d56f2d.php
+│           ├── caches6ddde1b5fdd3eaa11ca376a3ff910c2e.php
+│           ├── caches72626701608154bc711c0545af0b522a.php
+│           ├── caches872b97ca230394aba8221f9a977fa931.php
+│           ├── caches943419f8fa120fca06f18711503c7cbd.php
+│           ├── caches9a22f4166e7c10ae7611964a4cff298e.php
+│           ├── cachesa47697e2ef868c25a2faf6c6dfc70eec.php
+│           ├── cachesbc43890e2fcf01d98a0a9adaf1997af5.php
+│           ├── cachesc6fc11767193490af061c04beb6cea9d.php
+│           ├── cachesd3e07f4a05d393baddd94639c15dae81.php
+│           ├── cachesd4f83da32f170024ce37d9767f70dde3.php
+│           ├── cachesfc337dc1c190be6860906a650819f6ec.php
+│           ├── sample
+│           │   ├── Templators
+│           │   │   ├── Groups
+│           │   │   │   └── nesting.php
+│           │   │   ├── Slots
+│           │   │   │   ├── layout.php
+│           │   │   │   └── layout2.php
+│           │   │   ├── comment.php
+│           │   │   ├── component.php
+│           │   │   ├── each.php
+│           │   │   ├── eachbreak.php
+│           │   │   ├── eachcontinue.php
+│           │   │   ├── else.php
+│           │   │   ├── if.php
+│           │   │   ├── include.php
+│           │   │   ├── naming-ternary.php
+│           │   │   ├── naming.php
+│           │   │   ├── namingskip.php
+│           │   │   ├── nesting.component.php
+│           │   │   ├── nesting.include.php
+│           │   │   ├── normal.php
+│           │   │   ├── parent-data.php
+│           │   │   ├── php.php
+│           │   │   ├── portfolio.php
+│           │   │   ├── repeat.component.php
+│           │   │   ├── repeat.include.php
+│           │   │   ├── set.php
+│           │   │   ├── slot.php
+│           │   │   └── slot_miss.php
+│           │   ├── sample.html
+│           │   └── sample.php
+│           └── templator
+│               └── view
+│                   ├── component.php
+│                   ├── component.template
+│                   ├── componentcard.template
+│                   ├── componentnamed.template
+│                   ├── componentnested.template
+│                   ├── componentyield.template
+│                   ├── emptyyield.template
+│                   ├── section.template
+│                   ├── sectiondefault.template
+│                   ├── sectiondefaultandmultilines.template
+│                   ├── sectiondefaultmultilines.template
+│                   ├── sectionempty.template
+│                   └── sectionwithmissingyield.template
+└── bootstrap.php

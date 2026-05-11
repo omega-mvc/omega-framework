@@ -30,7 +30,7 @@ use Throwable;
 
 use function array_map;
 use function array_merge;
-use function Omega\Support\get_path;
+use function Omega\Application\get_path;
 use function Omega\Support\view;
 
 /**

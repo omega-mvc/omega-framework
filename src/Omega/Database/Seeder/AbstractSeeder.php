@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Omega\Database\Seeder;
 
-use Omega\Database\Connection;
+use Omega\Database\Connectioninterface;
 use Omega\Database\Query\Insert;
 
 /**
@@ -55,9 +55,9 @@ abstract class AbstractSeeder implements SeederInterface
      *
      * Initializes the seeder with a database connection.
      *
-     * @param Connection $pdo The PDO-like connection object used to perform database operations.
+     * @param ConnectionInterface $pdo The PDO-like connection object used to perform database operations.
      */
-    public function __construct(protected Connection $pdo)
+    public function __construct(protected ConnectionInterface $pdo)
     {
     }
 

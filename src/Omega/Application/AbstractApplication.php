@@ -31,8 +31,7 @@ use Omega\RateLimiter\RateLimiterServiceProvider;
 use Omega\Router\RouteServiceProvider;
 use Omega\Security\HashServiceProvider;
 use Omega\Container\AbstractServiceProvider;
-use Omega\Support\PackageManifest;
-use Omega\Support\Vite;
+use Omega\View\Vite;
 use Omega\View\Templator;
 use Omega\View\ViewServiceProvider;
 use Psr\Container\ContainerExceptionInterface;
@@ -49,7 +48,7 @@ use function count;
 use function file_exists;
 use function in_array;
 use function str_replace;
-use function Omega\Support\get_path;
+use function Omega\Application\get_path;
 
 use const DIRECTORY_SEPARATOR;
 
@@ -223,8 +222,8 @@ abstract class AbstractApplication extends Container implements ApplicationInter
         $this->set(Container::class, $this);
 
         $this->set(
-            PackageManifest::class,
-            fn () => new PackageManifest(
+            ApplicationManifest::class,
+            fn () => new ApplicationManifest(
                 $this->basePath,
                 $this->getApplicationCachePath()
             )

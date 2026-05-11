@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 
-use function Omega\Support\path;
+use function Omega\Application\path;
 
 /**
  * Class UrlTest

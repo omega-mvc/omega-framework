@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace Tests\Database;
 
-use Omega\Database\Connection;
+use Omega\Database\ConnectionInterface;
 use Omega\Database\DatabaseManager;
+use Omega\Database\Exceptions\InvalidConfigurationException;
 use Omega\Database\Query\Insert;
 use Omega\Database\Schema\Schema;
 use Omega\Database\Schema\SchemaConnection;
@@ -39,7 +40,7 @@ use PHPUnit\Framework\TestCase;
  * @license   https://www.gnu.org/licenses/gpl-3.0-standalone.html     GPL V3.0+
  * @version   2.0.0
  */
-#[CoversClass(Connection::class)]
+#[CoversClass(ConnectionInterface::class)]
 #[CoversClass(SchemaConnection::class)]
 #[CoversClass(DatabaseManager::class)]
 #[CoversClass(Insert::class)]
@@ -49,8 +50,8 @@ abstract class AbstractTestDatabase extends TestCase
     /** @var array<string, string|int> Database connection environment variables */
     protected array $env;
 
-    /** @var Connection Main PDO connection instance for tests */
-    protected Connection $pdo;
+    /** @var Connectioninterface Main PDO connection instance for tests */
+    protected ConnectionInterface $pdo;
 
     /** @var SchemaConnection Schema-level connection instance */
     protected SchemaConnection $pdoSchema;
@@ -69,14 +70,20 @@ abstract class AbstractTestDatabase extends TestCase
     protected function createConnection(): void
     {
         $this->setupEnv($_ENV['DB_CONNECTION'] ?? 'mysql');
+
         $this->pdoSchema = new SchemaConnection($this->env);
         $this->schema    = new Schema($this->pdoSchema, $this->env['database']);
 
-        // Build the database
-        $this->schema->create()->database($this->env['database'])->ifNotExists()->execute();
+        $this->schema->create()
+            ->database($this->env['database'])
+            ->ifNotExists()
+            ->execute();
 
-        $this->pdo = new Connection($this->env);
-        $this->db  = new DatabaseManager($this->getConfiguration());
+        $class = $this->resolveConnectionClass($this->env['driver']);
+
+        $this->pdo = new $class($this->env);
+
+        $this->db = new DatabaseManager($this->getConfiguration());
         $this->db->setDefaultConnection($this->pdo);
     }
 
@@ -160,5 +167,18 @@ abstract class AbstractTestDatabase extends TestCase
         return (new Insert('users', $this->pdo))
             ->rows($users)
             ->execute();
+    }
+
+    protected function resolveConnectionClass(string $driver): string
+    {
+        return match ($driver) {
+            'mysql'   => \Omega\Database\MysqlConnection::class,
+            'mariadb' => \Omega\Database\MariaDbConnection::class,
+            'pgsql'   => \Omega\Database\PgsqlConnection::class,
+            'sqlite'  => \Omega\Database\SqliteConnection::class,
+            default   => throw new InvalidConfigurationException(
+                "Unsupported database driver [$driver]."
+            ),
+        };
     }
 }

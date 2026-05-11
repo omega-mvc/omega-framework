@@ -20,7 +20,7 @@ use Omega\Collection\Collection;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Bootstrap\RegisterFacades;
+use Omega\Facade\Bootstrapper\FacadeBootstrapper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -49,7 +49,7 @@ use Tests\Support\Bootstrap\Support\TestCollectionFacade;
 #[CoversClass(CircularAliasException::class)]
 #[CoversClass(Collection::class)]
 #[CoversClass(EntryNotFoundException::class)]
-#[CoversClass(RegisterFacades::class)]
+#[CoversClass(FacadeBootstrapper::class)]
 class RegisterFacadesTest extends TestCase
 {
     /**
@@ -67,7 +67,7 @@ class RegisterFacadesTest extends TestCase
     {
         $app = new Application(basePath: __DIR__ . '/fixtures/');
         $app->set(Collection::class, fn () => new Collection(['php' => 'greater']));
-        $app->bootstrapWith([RegisterFacades::class]);
+        $app->bootstrapWith([FacadeBootstrapper::class]);
 
         $this->assertTrue(TestCollectionFacade::has('php'));
     }

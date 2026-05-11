@@ -23,7 +23,7 @@ use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Exceptions\ApplicationNotAvailableException;
-use Omega\Support\Vite;
+use Omega\View\Vite;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
@@ -31,15 +31,15 @@ use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 use Tests\FixturesPathTrait;
 
-use function Omega\Support\app;
-use function Omega\Support\env;
-use function Omega\Support\get_path;
-use function Omega\Support\is_dev;
-use function Omega\Support\is_production;
-use function Omega\Support\os_detect;
-use function Omega\Support\path;
-use function Omega\Support\set_path;
-use function Omega\Support\slash;
+use function Omega\Application\app;
+use function Omega\Environment\env;
+use function Omega\Application\get_path;
+use function Omega\Application\is_dev;
+use function Omega\Application\is_production;
+use function Omega\Application\os_detect;
+use function Omega\Application\path;
+use function Omega\Application\set_path;
+use function Omega\Application\slash;
 use function Omega\Support\vite;
 
 /**

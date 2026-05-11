@@ -9,8 +9,8 @@ use Omega\Console\Traits\InteractsWithConsoleOutputTrait;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Facades\DB;
-use Omega\Support\Facades\PDO;
+use Omega\Database\Facades\DB;
+use Omega\Database\Facades\PDO;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
@@ -25,7 +25,7 @@ use Symfony\Component\Console\Input\InputOption;
         'table-name' => ['t', InputOption::VALUE_OPTIONAL, 'Display information about the given database table']
     ]
 )]
-final class DatabaseShowCommand extends AbstractMigrationCommand
+final class DatabaseShowCommand extends AbstractMigration
 {
     use InteractsWithConsoleOutputTrait;
 

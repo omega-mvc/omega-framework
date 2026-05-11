@@ -20,7 +20,7 @@ use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Http\Http;
-use Omega\Support\PackageManifest;
+use Omega\Application\ApplicationManifest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -45,7 +45,7 @@ use Tests\FixturesPathTrait;
 #[CoversClass(CircularAliasException::class)]
 #[CoversClass(EntryNotFoundException::class)]
 #[CoversClass(Http::class)]
-#[CoversClass(PackageManifest::class)]
+#[CoversClass(ApplicationManifest::class)]
 final class KernelTest extends TestCase
 {
     use FixturesPathTrait;
@@ -71,7 +71,7 @@ final class KernelTest extends TestCase
     {
         $this->app = new Application($this->setFixturePath('/fixtures/application-read/'));
 
-        $this->app->set(PackageManifest::class, fn () => new PackageManifest(
+        $this->app->set(ApplicationManifest::class, fn () => new ApplicationManifest(
             basePath: $this->app->get('path.base'),
             applicationCachePath: $this->app->getApplicationCachePath(),
             vendorPath: '/package/'

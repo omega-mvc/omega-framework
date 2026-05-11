@@ -24,11 +24,11 @@ use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Exceptions\ExceptionHandler;
 use Omega\Middleware\MaintenanceMiddleware;
 use Omega\Router\Router;
-use Omega\Support\Bootstrap\BootProviders;
-use Omega\Support\Bootstrap\ConfigProviders;
-use Omega\Support\Bootstrap\HandleExceptions;
-use Omega\Support\Bootstrap\RegisterFacades;
-use Omega\Support\Bootstrap\RegisterProviders;
+use Omega\Application\Bootstrapper\BootProviders;
+use Omega\Config\Bootstrapper\ConfigBootstrapper;
+use Omega\Exceptions\Bootstrapper\HandleExceptions;
+use Omega\Facade\Bootstrapper\FacadeBootstrapper;
+use Omega\Application\Bootstrapper\RegisterProviders;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 use Throwable;
@@ -94,9 +94,9 @@ class Http
      * @var array<int, class-string|string>
      */
     protected array $bootstrappers = [
-        ConfigProviders::class,
+        ConfigBootstrapper::class,
         HandleExceptions::class,
-        RegisterFacades::class,
+        FacadeBootstrapper::class,
         RegisterProviders::class,
         BootProviders::class,
     ];

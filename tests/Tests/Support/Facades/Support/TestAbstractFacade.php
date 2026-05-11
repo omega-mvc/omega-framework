@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Facades\Support;
 
-use Omega\Support\Facades\AbstractFacade;
+use Omega\Facade\AbstractFacade;
 
 /**
  * A test facade for verifying abstract facade behavior.

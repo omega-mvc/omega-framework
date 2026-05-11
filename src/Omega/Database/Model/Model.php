@@ -18,7 +18,7 @@ use ArrayAccess;
 use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use Omega\Database\ConnectionInterface;
+use Omega\Database\Connectioninterface;
 use Omega\Database\Query\AbstractQuery;
 use Omega\Database\Query\Bind;
 use Omega\Database\Query\Join\InnerJoin;

@@ -20,7 +20,7 @@ use Omega\View\Exceptions\ViewFileNotFoundException;
 use function file_exists;
 use function ob_get_clean;
 use function ob_start;
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 
 /**
  * Class View

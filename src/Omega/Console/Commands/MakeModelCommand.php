@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Omega\Console\Commands;
 
 use Omega\Console\Attribute\AsCommand;
-use Omega\Support\Facades\DB;
+use Omega\Database\Facades\DB;
 use Omega\Template\Generate;
 use Omega\Template\Property;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Throwable;
 use function file_exists;
 use function file_put_contents;
-use function Omega\Support\path;
+use function Omega\Application\path;
 use function ucfirst;
 
 #[AsCommand(

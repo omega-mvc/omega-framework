@@ -12,6 +12,7 @@
 
 namespace Omega\Database;
 
+use Omega\Database\ConnectionInterface;
 use Omega\Database\Exceptions\InvalidConfigurationException;
 
 use function sprintf;
@@ -84,19 +85,17 @@ class DatabaseManager implements ConnectionInterface
      */
     public function connection(string $name): ConnectionInterface
     {
-        if (false === isset($this->connections[$name])) {
-            if (false === isset($this->configs[$name])) {
+        if (!isset($this->connections[$name])) {
+            if (!isset($this->configs[$name])) {
                 throw new InvalidConfigurationException(
-                    sprintf(
-                        "Database connection [%s] not configured.",
-                        $name
-                    )
+                    sprintf('Database connection [%s] not configured.', $name)
                 );
             }
 
             $config = $this->configs[$name];
+            $driver = ucfirst($config['driver']);
 
-            $this->connections[$name] = new Connection($config);
+            $this->connections[$name] = ConnectionFactory::make($config);
         }
 
         return $this->connections[$name];

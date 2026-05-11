@@ -19,7 +19,7 @@ use Omega\Application\Application;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Support\Bootstrap\ConfigProviders;
+use Omega\Config\Bootstrapper\ConfigBootstrapper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -59,7 +59,7 @@ use function unlink;
 #[CoversClass(Application::class)]
 #[CoversClass(BindingResolutionException::class)]
 #[CoversClass(CircularAliasException::class)]
-#[CoversClass(ConfigProviders::class)]
+#[CoversClass(ConfigBootstrapper::class)]
 #[CoversClass(EntryNotFoundException::class)]
 class ConfigProvidersTest extends TestCase
 {
@@ -81,7 +81,7 @@ class ConfigProvidersTest extends TestCase
         $app = new Application($this->setFixtureBasePath());
         $app->set('path.config', $this->setFixturePath('/fixtures/application-read/config/'));
 
-        new ConfigProviders()->bootstrap($app);
+        new ConfigBootstrapper()->bootstrap($app);
         $config = $app->get('config');
 
         $this->assertEquals('prod', $config->get('environment'));
@@ -105,7 +105,7 @@ class ConfigProvidersTest extends TestCase
     public function testItCanLoadConfigFromCache(): void
     {
         $app = new Application($this->setFixturePath('/fixtures/application-read/'));
-        new ConfigProviders()->bootstrap($app);
+        new ConfigBootstrapper()->bootstrap($app);
         $config = $app->get('config');
 
         $this->assertEquals('prod', $config->get('environment'));
@@ -143,7 +143,7 @@ class ConfigProvidersTest extends TestCase
         $this->expectExceptionMessage('Invalid config file');
 
         try {
-            new ConfigProviders()->bootstrap($app);
+            new ConfigBootstrapper()->bootstrap($app);
         } finally {
             if (file_exists($filePath)) unlink($filePath);
             if (is_dir($tempConfigDir)) rmdir($tempConfigDir);
@@ -176,7 +176,7 @@ class ConfigProvidersTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Invalid config cache file');
 
-        new ConfigProviders()->bootstrap($app);
+        new ConfigBootstrapper()->bootstrap($app);
 
         unlink($cacheFile);
 
@@ -207,7 +207,7 @@ class ConfigProvidersTest extends TestCase
             "<?php return ['environment' => 'cached'];"
         );
 
-        new ConfigProviders()->bootstrap($app);
+        new ConfigBootstrapper()->bootstrap($app);
 
         $config = $app->get('config');
 
@@ -239,7 +239,7 @@ class ConfigProvidersTest extends TestCase
 
         $app->set('path.config', $emptyDir);
 
-        new ConfigProviders()->bootstrap($app);
+        new ConfigBootstrapper()->bootstrap($app);
 
         $config = $app->get('config');
         $this->assertEmpty($config->getAll());

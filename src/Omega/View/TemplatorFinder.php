@@ -21,7 +21,7 @@ use function array_map;
 use function array_merge;
 use function array_unshift;
 use function in_array;
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 use function realpath;
 use function reset;
 

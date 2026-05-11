@@ -47,10 +47,13 @@
             "Omega\\": "src/Omega/"
         },
         "files": [
+            "src/Omega/Application/helper.php",
             "src/Omega/Collection/helper.php",
+            "src/Omega/Environment/helper.php",
+            "src/Omega/Http/helper.php",
             "src/Omega/Text/helper.php",
             "src/Omega/Time/helper.php",
-            "src/Omega/Support/helper.php"
+            "src/Omega/View/helper.php"
         ]
     },
     "autoload-dev": {

@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\InputOption;
         'dry-run'  => [null, InputOption::VALUE_NONE, 'Dump the SQL queries without executing']
     ]
 )]
-final class MigrateResetCommand extends AbstractMigrationCommand
+final class MigrateResetCommand extends AbstractMigration
 {
     /**
      * Roll back all executed migrations.

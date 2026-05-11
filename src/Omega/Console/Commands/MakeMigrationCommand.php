@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Question\Question;
 
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 use function Omega\Time\now;
 
 #[AsCommand(

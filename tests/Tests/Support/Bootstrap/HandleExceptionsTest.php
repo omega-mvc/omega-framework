@@ -22,7 +22,7 @@ use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Exceptions\ExceptionHandler;
 use Omega\Http\Request;
-use Omega\Support\Bootstrap\HandleExceptions;
+use Omega\Exceptions\Bootstrapper\HandleExceptions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;

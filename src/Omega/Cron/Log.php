@@ -16,7 +16,7 @@ namespace Omega\Cron;
 
 use DateInvalidTimeZoneException;
 use DateMalformedStringException;
-use Omega\Support\Facades\DB;
+use Omega\Database\Facades\DB;
 
 use function json_encode;
 use function Omega\Time\now;

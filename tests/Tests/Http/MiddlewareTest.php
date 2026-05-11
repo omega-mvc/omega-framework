@@ -21,7 +21,7 @@ use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Http\Http;
 use Omega\Http\Request;
 use Omega\Http\Response;
-use Omega\Support\PackageManifest;
+use Omega\Application\ApplicationManifest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tests\FixturesPathTrait;
@@ -56,7 +56,7 @@ use function ob_start;
 #[CoversClass(Response::class)]
 #[CoversClass(Application::class)]
 #[CoversClass(Http::class)]
-#[CoversClass(PackageManifest::class)]
+#[CoversClass(ApplicationManifest::class)]
 final class MiddlewareTest extends TestCase
 {
     use FixturesPathTrait;
@@ -82,7 +82,7 @@ final class MiddlewareTest extends TestCase
     {
         $this->app = new Application($this->setFixturePath('/fixtures/application-read/'));
 
-        $this->app->set(PackageManifest::class, fn () => new PackageManifest(
+        $this->app->set(ApplicationManifest::class, fn () => new ApplicationManifest(
             basePath: $this->app->get('path.base'),
             applicationCachePath: $this->app->getApplicationCachePath(),
             vendorPath: '/package/'

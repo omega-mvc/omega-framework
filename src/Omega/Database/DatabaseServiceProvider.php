@@ -29,6 +29,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
         $configs     = $this->app->get('config');
         $default     = $configs['db.default'];
         $connections = $configs['db.connections'];
+
         $dsn         = $connections[$default];
 
         $this->app->set('dsn.default', $default);
@@ -36,8 +37,8 @@ class DatabaseServiceProvider extends AbstractServiceProvider
         $this->app->set('dsn.sql', $dsn);
 
         $this->app->set(
-            Connection::class,
-            fn () => new Connection($this->app->get('dsn.sql'))
+            'database',
+            fn () => ConnectionFactory::make($this->app->get('dsn.sql'))
         );
 
         $this->app->set(
@@ -47,7 +48,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
 
         $this->app->set(
             'Query',
-            fn () => new Query($this->app->get(Connection::class))
+            fn () => new Query($this->app->get('database'))
         );
 
         $this->app->set(
@@ -58,7 +59,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
         $this->app->set(
             DatabaseManager::class,
             fn () => new DatabaseManager($this->app->get('dsn.connections'))
-                ->setDefaultConnection($this->app->get(Connection::class))
+                ->setDefaultConnection($this->app->get('database'))
         );
     }
 }

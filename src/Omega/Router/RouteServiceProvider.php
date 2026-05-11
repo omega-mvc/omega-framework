@@ -14,7 +14,7 @@ use ReflectionException;
 
 use function file_exists;
 use function is_string;
-use function Omega\Support\get_path;
+use function Omega\Application\get_path;
 use function str_contains;
 use function unserialize;
 

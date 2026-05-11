@@ -7,7 +7,7 @@ namespace Omega\Console\Commands;
 use Omega\Console\AbstractCommand;
 use Omega\Console\Attribute\AsCommand;
 
-use function Omega\Support\slash;
+use function Omega\Application\slash;
 
 #[AsCommand(
     name: 'down',

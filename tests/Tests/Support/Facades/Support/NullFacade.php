@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Facades\Support;
 
-use Omega\Support\Facades\AbstractFacade;
+use Omega\Facade\AbstractFacade;
 
 /**
  * A facade that intentionally points to a non-existent service.

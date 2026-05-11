@@ -14,7 +14,8 @@ declare(strict_types=1);
 
 namespace Omega\Database\Schema;
 
-use Omega\Database\Connection;
+use Omega\Database\AbstractConnection;
+use Omega\Database\Exceptions\InvalidConfigurationException;
 use PDOException;
 
 /**
@@ -32,7 +33,7 @@ use PDOException;
  * @license    https://www.gnu.org/licenses/gpl-3.0-standalone.html     GPL V3.0+
  * @version    2.0.0
  */
-class SchemaConnection extends Connection implements SchemaConnectionInterface
+class SchemaConnection extends AbstractConnection implements SchemaConnectionInterface
 {
     /** @var string Name of the connected database
      * @noinspection PhpGetterAndSetterCanBeReplacedWithPropertyHooksInspection
@@ -50,10 +51,15 @@ class SchemaConnection extends Connection implements SchemaConnectionInterface
      */
     public function __construct(array $configs)
     {
-        $dsnConfig      = $this->setConfigs($configs);
+        $this->configs  = $this->normalizeConfigs($configs);
         $this->database = $configs['database'] ?? $configs['database_name'];
-        $dsn            = $this->getDsn($dsnConfig);
-        $this->pdo      = $this->createConnection($dsn, $dsnConfig, $dsnConfig['options']);
+        $dsn            = $this->buildDsn();
+        $this->pdo      = $this->createPdo(
+            $dsn,
+            $this->configs['username'],
+            $this->configs['password'],
+            $this->mergeOptions($this->configs['options'] ?? [])
+        );
     }
 
     /**
@@ -72,7 +78,7 @@ class SchemaConnection extends Connection implements SchemaConnectionInterface
      * @param array<string, mixed> $configs Input configuration array
      * @return array<string, mixed> Normalized configuration array ready for DSN
      */
-    protected function setConfigs(array $configs): array
+    protected function normalizeConfigs(array $configs): array
     {
         return $this->configs = [
             'driver'   => $configs['driver'] ?? 'mysql',
@@ -82,7 +88,23 @@ class SchemaConnection extends Connection implements SchemaConnectionInterface
             'charset'  => $configs['charset'] ?? null,
             'username' => $configs['user'] ?? $configs['username'] ?? null,
             'password' => $configs['password'] ?? null,
-            'options'  => $configs['options'] ?? $this->option,
+            'options'  => $configs['options'] ?? $this->defaultOptions,
         ];
+    }
+
+    protected function buildDsn(): string
+    {
+        $driver = $this->configs['driver'];
+        $host   = $this->configs['host'];
+        $port   = $this->configs['port'] ?? 3306;
+        $char   = $this->configs['charset'] ?? 'utf8mb4';
+
+        if (!$host) {
+            throw new InvalidConfigurationException(
+                "{$driver} requires host."
+            );
+        }
+
+        return "mysql:host={$host};port={$port};charset={$char}";
     }
 }

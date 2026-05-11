@@ -24,7 +24,7 @@ use Omega\Http\Exceptions\HttpException;
 use Omega\Http\Http;
 use Omega\Http\Request;
 use Omega\Http\Response;
-use Omega\Support\PackageManifest;
+use Omega\Application\ApplicationManifest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -55,7 +55,7 @@ use Throwable;
 #[CoversClass(Http::class)]
 #[CoversClass(Request::class)]
 #[CoversClass(Response::class)]
-#[CoversClass(PackageManifest::class)]
+#[CoversClass(ApplicationManifest::class)]
 final class KernelHandleExceptionTest extends TestCase
 {
     use FixturesPathTrait;
@@ -84,7 +84,7 @@ final class KernelHandleExceptionTest extends TestCase
     {
         $this->app = new Application($this->setFixturePath('/fixtures/application-read/'));
 
-        $this->app->set(PackageManifest::class, fn () => new PackageManifest(
+        $this->app->set(ApplicationManifest::class, fn () => new ApplicationManifest(
             basePath: $this->app->get('path.base'),
             applicationCachePath: $this->app->getApplicationCachePath(),
             vendorPath: '/package/'

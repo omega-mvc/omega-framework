@@ -19,7 +19,7 @@ use Symfony\Component\Console\Input\InputOption;
     ],
     aliases: ['migrate']
 )]
-final class MigrateRunCommand extends AbstractMigrationCommand
+final class MigrateRunCommand extends AbstractMigration
 {
     /**
      * @throws ContainerExceptionInterface

@@ -82,7 +82,7 @@ class MemoryLeakTest extends AbstractTestContainer
         } elseif (getenv('CI') || getenv('GITHUB_ACTIONS')) {
             $this->iterations = 100;
         } else {
-            $this->iterations = 1000;
+            $this->iterations = 100000;
         }
     }
 

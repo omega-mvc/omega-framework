@@ -21,8 +21,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 
-use function Omega\Support\redirect;
-use function Omega\Support\redirect_route;
+use function Omega\Http\redirect;
+use function Omega\Http\redirect_route;;
 
 /**
  * Test suite for redirect helper functions and RedirectResponse behavior.

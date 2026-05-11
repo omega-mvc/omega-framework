@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
-use Omega\Support\Env;
+use Omega\Environment\Env;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

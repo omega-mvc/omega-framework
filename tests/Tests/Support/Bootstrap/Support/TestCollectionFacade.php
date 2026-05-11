@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Tests\Support\Bootstrap\Support;
 
 use Omega\Collection\Collection;
-use Omega\Support\Facades\AbstractFacade;
+use Omega\Facade\AbstractFacade;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 /**

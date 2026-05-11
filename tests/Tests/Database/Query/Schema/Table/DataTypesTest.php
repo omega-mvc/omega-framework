@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\DataBase\Query\Schema\Table;
+namespace Tests\Database\Query\Schema\Table;
 
 use Omega\Database\Schema\Table\Create;
 use PHPUnit\Framework\Attributes\CoversClass;
