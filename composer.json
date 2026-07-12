@@ -30,6 +30,7 @@
         "ext-posix": "*",
         "ext-readline": "*",
         "ext-simplexml": "*",
+        "omega-mvc/omega-kernel": "^2.0.0",
         "omega-mvc/serializable-closure":  "^2.0.0",
         "omega-mvc/validator": "^2.0.0",
         "psr/container": "^2.0",
