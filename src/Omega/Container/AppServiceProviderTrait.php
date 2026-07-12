@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omega\Support;
+namespace Omega\Container;
 
 use Exception;
 
@@ -14,6 +14,7 @@ use function copy;
 use function file_exists;
 use function is_dir;
 use function mkdir;
+use function Omega\Application\slash;
 use function pathinfo;
 use function scandir;
 
@@ -95,7 +96,9 @@ trait AppServiceProviderTrait
         $items = array_diff($dir, ['.', '..']);
 
         return array_reduce($items, function (bool $carry, string $file) use ($from, $to, $overwrite) {
-            if (!$carry) return false;
+            if (!$carry) {
+                return false;
+            }
 
             $src = slash(path: $from . '/' . $file);
             $dst = slash(path: $to . '/' . $file);

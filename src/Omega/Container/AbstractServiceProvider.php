@@ -33,6 +33,8 @@ use Omega\Application\Application;
  */
 abstract class AbstractServiceProvider
 {
+    use AppServiceProviderTrait;
+
     /** @var array<int|string, class-string> Classes to register in the container */
     protected array $register = [];
 

@@ -77,7 +77,7 @@ class Memory extends AbstractCache
      */
     public function __construct(array $options)
     {
-        parent::__construct($options);
+        parent::__construct($options['ttl']);
     }
 
     /**

@@ -16,6 +16,7 @@ namespace Omega\Cache;
 
 use Closure;
 use DateInterval;
+use DateTimeInterface;
 use Omega\Cache\Exceptions\CacheConfigurationException;
 use Omega\Cache\Storage\StorageInterface;
 
@@ -53,27 +54,29 @@ abstract class AbstractCache implements CacheInterface, StorageInterface
     protected int|DateInterval $defaultTTL;
 
     /**
-     * AbstractStorage constructor.
+     * AbstractCache constructor.
      *
-     * Initializes the storage with required options.
+     * Initializes the base cache layer with a default time-to-live (TTL)
+     * used as fallback when no explicit TTL is provided during cache operations.
      *
-     * Required keys in $options:
-     * - 'ttl' : int|DateInterval  The default time-to-live for cache items.
+     * This constructor no longer depends on driver-specific configuration arrays:
+     * each concrete storage implementation is responsible for handling its own
+     * configuration, while only the resolved default TTL is passed to the base class.
      *
-     * @param array{
-     *   ttl: int|DateInterval,
-     *   path: string,
-     * } $options Configuration options for the storage.
+     * @param int|DateInterval $defaultTTL Default time-to-live for cache entries,
+     *                                     expressed in seconds or as a DateInterval.
      * @return void
-     * @throws CacheConfigurationException If the 'ttl' option is missing.
+     * @throws CacheConfigurationException If the TTL value is invalid or cannot be used as a default expiration value.
      */
-    public function __construct(array $options)
+    public function __construct(int|DateInterval $defaultTTL)
     {
-        if (!isset($options['ttl'])) {
-            throw new CacheConfigurationException('The TTL (time-to-live) option is required.');
+        if (is_int($defaultTTL) && $defaultTTL < 0) {
+            throw new CacheConfigurationException(
+                'Invalid TTL: value must be greater than or equal to 0 seconds.'
+            );
         }
 
-        $this->defaultTTL = $options['ttl'];
+        $this->defaultTTL = $defaultTTL;
     }
 
     /**
@@ -160,5 +163,10 @@ abstract class AbstractCache implements CacheInterface, StorageInterface
     public function getInfo(string $key): array
     {
         return [];
+    }
+
+    public function calculateExpirationTimestamp(int|DateInterval|DateTimeInterface|null $ttl): int
+    {
+        return 0;
     }
 }

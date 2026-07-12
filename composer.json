@@ -1,5 +1,5 @@
 {
-    "name": "omega-mvc/framework",
+    "name": "omega-mvc/omega-framework",
     "type": "library",
     "description": "OmegaFramework is a lightweight and modular PHP framework designed for building modern web applications following the MVC architecture. It is optimized for PHP 8+ and provides a simple, extensible foundation for rapid application development.",
     "keywords": [

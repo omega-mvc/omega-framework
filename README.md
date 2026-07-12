@@ -1,5 +1,4 @@
-<p align="center">
-    <a href="https://omega-mvc.github.io" target="_blank">
+<p align="center"> <a href="https://omega-mvc.github.io" target="_blank">
         <img src="https://github.com/omega-mvc/omega-assets/blob/main/images/logo-omega.png" alt="Omega Logo">
     </a>
 </p>
@@ -91,7 +90,7 @@ DB::table('table_name')
 ```
 its supported cancel transaction if you needed
 ```php
-use Omega\Support\Facades;
+use Omega\Database\Facades\PDO;
 
 PDO::transaction(function() {
     DB::table('table_name')

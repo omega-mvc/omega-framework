@@ -247,4 +247,11 @@ interface ApplicationInterface
      * @return void
      */
     public function abort(int $code, string $message = '', array $headers = []): void;
+
+    /**
+     * Get the list of core proviers.
+     *
+     * @return array Return an array of core providers.
+     */
+    public function getCoreProviders(): array;
 }

@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace Omega\Application;
 
-use App\Providers\AppServiceProvider;
 use Exception;
 use Omega\Cache\CacheServiceProvider;
 use Omega\Config\ConfigRepository;
+use Omega\Container\AbstractServiceProvider;
 use Omega\Container\Container;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
@@ -26,29 +26,24 @@ use Omega\Cron\CronServiceProvider;
 use Omega\Database\DatabaseServiceProvider;
 use Omega\Exceptions\WhoopsServiceProvider;
 use Omega\Http\Exceptions\HttpException;
+use Omega\Http\MacroServiceProvider;
 use Omega\Http\Request;
 use Omega\RateLimiter\RateLimiterServiceProvider;
 use Omega\Router\RouteServiceProvider;
 use Omega\Security\HashServiceProvider;
-use Omega\Container\AbstractServiceProvider;
-use Omega\View\Vite;
 use Omega\View\Templator;
 use Omega\View\ViewServiceProvider;
+use Omega\View\Vite;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 
-use Whoops\Handler\PlainTextHandler;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 use function array_filter;
 use function array_walk;
 use function assert;
-use function class_exists;
 use function count;
 use function file_exists;
 use function in_array;
 use function str_replace;
-use function Omega\Application\get_path;
 
 use const DIRECTORY_SEPARATOR;
 
@@ -83,7 +78,7 @@ abstract class AbstractApplication extends Container implements ApplicationInter
         ViewServiceProvider::class,
         CacheServiceProvider::class,
         RateLimiterServiceProvider::class,
-        AppServiceProvider::class,
+        MacroServiceProvider::class,
     ];
 
     /** @var AbstractServiceProvider[] Service providers that have completed the boot phase. */
@@ -123,10 +118,7 @@ abstract class AbstractApplication extends Container implements ApplicationInter
      * @return void
      * @throws BindingResolutionException
      * @throws CircularAliasException
-     * @throws ContainerExceptionInterface
-     * @throws EntryNotFoundException
      * @throws Exception
-     * @throws ReflectionException
      */
     public function __construct(?string $basePath = null)
     {

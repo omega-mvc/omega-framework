@@ -75,7 +75,6 @@ interface StorageInterface
      *        - `DateInterval`: A relative interval added to the current time.
      *        - `DateTimeInterface`: A specific expiration moment.
      *        - `null`: No expiration (persistent cache).
-     *
      * @return int Returns the UNIX timestamp representing the expiration time.
      */
     public function calculateExpirationTimestamp(int|DateInterval|DateTimeInterface|null $ttl): int;

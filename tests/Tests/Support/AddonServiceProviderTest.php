@@ -17,7 +17,7 @@ namespace Tests\Support;
 use Omega\Application\Application;
 use Omega\Http\Request;
 use Omega\Http\Upload\UploadFile;
-use Omega\Support\AddonServiceProvider;
+use Omega\Http\MacroServiceProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -45,7 +45,7 @@ use PHPUnit\Framework\TestCase;
  * @version   2.0.0
  */
 #[CoversClass(Application::class)]
-#[CoversClass(AddonServiceProvider::class)]
+#[CoversClass(MacroServiceProvider::class)]
 #[CoversClass(Request::class)]
 class AddonServiceProviderTest extends TestCase
 {
@@ -56,7 +56,7 @@ class AddonServiceProviderTest extends TestCase
      */
     public function testItRegistersRequestMacros(): void
     {
-        $provider = new AddonServiceProvider(new Application(''));
+        $provider = new MacroServiceProvider(new Application(''));
 
         $provider->register();
 
@@ -71,7 +71,7 @@ class AddonServiceProviderTest extends TestCase
      */
     public function testUploadMacroExecutesCorrectly(): void
     {
-        $provider = new AddonServiceProvider(new Application(''));
+        $provider = new MacroServiceProvider(new Application(''));
         $provider->register();
 
         $mockFiles = [

@@ -89,7 +89,7 @@ class File extends AbstractCache
      */
     public function __construct(array $options)
     {
-        parent::__construct($options);
+        parent::__construct($options['ttl']);
 
         if (empty($options['path'])) {
             throw new CacheConfigurationException('The "path" option is required for File.');

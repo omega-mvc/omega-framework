@@ -18,7 +18,7 @@ use Omega\Application\Application;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
-use Omega\Facade\Exception\FacadeObjectNotSetException;
+use Omega\Facade\Exceptions\FacadeObjectNotSetException;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 

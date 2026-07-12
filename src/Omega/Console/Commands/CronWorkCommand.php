@@ -7,7 +7,7 @@ namespace Omega\Console\Commands;
 use Omega\Console\AbstractCommand;
 use Omega\Console\Attribute\AsCommand;
 use Omega\Cron\Schedule;
-use Omega\Support\Facades\Schedule as Scheduler;
+use Omega\Cron\Facade\Schedule as Scheduler;
 use Omega\Time\Now;
 
 use function microtime;

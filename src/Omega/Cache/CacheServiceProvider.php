@@ -14,12 +14,15 @@ declare(strict_types=1);
 
 namespace Omega\Cache;
 
+use Omega\Cache\Storage\Apcu;
 use Omega\Cache\Storage\File;
 use Omega\Cache\Storage\Memory;
+use Omega\Cache\Storage\Redis;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Container\AbstractServiceProvider;
+use Omega\Redis\RedisManager;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 use RuntimeException;
@@ -72,21 +75,18 @@ class CacheServiceProvider extends AbstractServiceProvider
         foreach ($adapters as $name => $options) {
             $this->app->set("cache.$name", function () use ($name, $options) {
                 return match ($name) {
-                    //'apcu'      => new Apcu($options),
+                    'apcu'      => new Apcu($options),
                     'file'      => new File($options),
                     'memory'    => new Memory($options),
-                    //'memcached' => $this->createMemcachedAdapter($options),
-                    //'redis'     => $this->createRedisAdapter($options),
+                    'redis'     => $this->createRedis($options),
                     default     => throw new RuntimeException("Unknown cache adapter: $name"),
                 };
             });
         }
 
-        // CacheManager principale con driver di default
         $this->app->set('cache', function () use ($default, $adapters) {
             $manager = new CacheManager($default, $this->app["cache.$default"]);
 
-            // Registriamo tutti gli altri driver
             foreach (array_keys($adapters) as $driver) {
                 if ($driver !== $default) {
                     $manager->setDriver($driver, $this->app["cache.$driver"]);
@@ -97,39 +97,19 @@ class CacheServiceProvider extends AbstractServiceProvider
         });
     }
 
-    /**
-     * Crea l'adapter Memcached con oggetto Memcached già configurato.
-     */
-    protected function createMemcachedAdapter(array $options): Memcached
+    private function createRedis(array $options): Redis
     {
-        $memcached = new PhpMemcached();
-        $host = $options['host'] ?? '127.0.0.1';
-        $port = $options['port'] ?? 11211;
-        $memcached->addServer($host, $port);
+        $config = $this->app->get('config')['redis'];
 
-        return new Memcached($memcached, $options);
-    }
+        $connectionName = $options['connection'] ?? $config['default'];
 
-    // Dentro CacheServiceProvider
+        $connection = $this->app
+            ->get(RedisManager::class)
+            ->connection($connectionName);
 
-    protected function createRedisAdapter(array $options): Redis
-    {
-        $client = new PhpRedis();
-
-        $host = $options['host'] ?? '127.0.0.1';
-        $port = $options['port'] ?? 6379;
-        $timeout = $options['timeout'] ?? 0.0;
-
-        $client->connect($host, $port, $timeout);
-
-        if (!empty($options['password'])) {
-            $client->auth($options['password']);
-        }
-
-        if (!empty($options['database'])) {
-            $client->select((int) $options['database']);
-        }
-
-        return new Redis($client, $options);
+        return new Redis(
+            $options,
+            $connection
+        );
     }
 }

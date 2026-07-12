@@ -8,7 +8,7 @@ use Omega\Console\AbstractCommand;
 use Omega\Console\Attribute\AsCommand;
 use Omega\Console\Traits\InteractsWithConsoleOutputTrait;
 use Omega\Cron\Schedule;
-use Omega\Support\Facades\Schedule as Scheduler;
+use Omega\Cron\Facade\Schedule as Scheduler;
 use function array_map;
 use function count;
 use function str_repeat;
