@@ -1,6 +1,7 @@
 {
     "name": "omega-mvc/omega-framework",
     "type": "library",
+    "version": "1.0.0",
     "description": "OmegaFramework is a lightweight and modular PHP framework designed for building modern web applications following the MVC architecture. It is optimized for PHP 8+ and provides a simple, extensible foundation for rapid application development.",
     "keywords": [
     	"lightweight",
@@ -30,9 +31,9 @@
         "ext-posix": "*",
         "ext-readline": "*",
         "ext-simplexml": "*",
-        "omega-mvc/omega-kernel": "^2.0.0",
-        "omega-mvc/serializable-closure":  "^2.0.0",
-        "omega-mvc/validator": "^2.0.0",
+        "omega-mvc/omega-kernel": "^1.0.0",
+        "omega-mvc/serializable-closure":  "^1.0.0",
+        "omega-mvc/validator": "^1.0.0",
         "psr/container": "^2.0",
         "psr/simple-cache": "^3.0",
         "symfony/console": "^v8.0.7",
