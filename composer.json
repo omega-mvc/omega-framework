@@ -34,12 +34,12 @@
         "omega-mvc/gettext": "^1.0.0",
         "omega-mvc/omega-kernel": "^1.0.0",
         "omega-mvc/serializable-closure":  "^1.0.0",
-        "omega-mvc/validator": "^1.0.0",
         "psr/container": "^2.0",
         "psr/simple-cache": "^3.0",
         "symfony/console": "^v8.0.7",
         "symfony/finder": "^v8.0.8",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "wixel/gump": "^v2.3.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^4.0",
@@ -56,6 +56,7 @@
             "src/Omega/Http/helper.php",
             "src/Omega/Text/helper.php",
             "src/Omega/Time/helper.php",
+            "src/Omega/Validator/helper.php",
             "src/Omega/View/helper.php"
         ]
     },
