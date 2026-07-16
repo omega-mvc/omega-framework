@@ -36,7 +36,7 @@ use Omega\Facade\AbstractFacade;
  * @license    https://www.gnu.org/licenses/gpl-3.0-standalone.html     GPL V3.0+
  * @version    2.0.0
  *
- * @method static \Omega\Support\Vite   manifestName(string $manifestName)
+ * @method static \Omega\View\Vite   manifestName(string $manifestName)
  * @method static void                  flush()
  * @method static string                manifest()
  * @method static array                 loader()
@@ -53,7 +53,7 @@ use Omega\Facade\AbstractFacade;
  * @method static string getTags(string[] $entryPoints, array<string|int, string|bool|int|null> $attributes = null)
  * @method static string getCustomTags(array $entryPoints,array<string|int, string|bool|int|null> $defaultAttributes=[])
  *
- * @see \Omega\Support\Vite
+ * @see \Omega\View\Vite
  */
 final class Vite extends AbstractFacade
 {

@@ -10,7 +10,7 @@ use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
 use Omega\Http\Response;
 use ReflectionException;
-use function Omega\Support\view;
+use function Omega\View\view;
 
 class __controller__Controller extends AbstractController
 {

@@ -17,11 +17,6 @@ class MacroServiceProvider extends AbstractServiceProvider
 
     public function boot(): void
     {
-        $this->registerRequestMacros();
-    }
-
-    private function registerRequestMacros(): void
-    {
         Request::macro(
             'validate',
             fn (?Closure $rule = null, ?Closure $filter = null) => Validator::make(

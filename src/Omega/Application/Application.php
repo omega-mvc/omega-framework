@@ -15,17 +15,23 @@ declare(strict_types=1);
 namespace Omega\Application;
 
 use Exception;
+use Omega\Cache\CacheServiceProvider;
+use Omega\Container\AbstractServiceProvider;
 use Omega\Container\Exceptions\BindingResolutionException;
 use Omega\Container\Exceptions\CircularAliasException;
 use Omega\Container\Exceptions\EntryNotFoundException;
+use Omega\Cron\CronServiceProvider;
+use Omega\Database\DatabaseServiceProvider;
+use Omega\Exceptions\WhoopsServiceProvider;
+use Omega\Http\MacroServiceProvider;
+use Omega\RateLimiter\RateLimiterServiceProvider;
+use Omega\Router\RouteServiceProvider;
+use Omega\Security\HashServiceProvider;
+use Omega\View\ViewServiceProvider;
 use Psr\Container\ContainerExceptionInterface;
 use ReflectionException;
 
 use function file_exists;
-use function rtrim;
-use function Omega\Environment\env;
-use function Omega\Application\get_path;
-use function Omega\Application\set_path;
 
 /**
  * Default Omega application implementation.
@@ -48,8 +54,21 @@ use function Omega\Application\set_path;
  * @license   https://www.gnu.org/licenses/gpl-3.0-standalone.html     GPL V3.0+
  * @version   2.0.0
  */
-class Application extends AbstractApplication
+class Application extends AbstractApplication implements ApplicationInterface
 {
+    /** @var array<int, class-string<AbstractServiceProvider>> Registered service provider class names. */
+    protected array $providers = [
+        WhoopsServiceProvider::class,
+        CronServiceProvider::class,
+        HashServiceProvider::class,
+        RouteServiceProvider::class,
+        DatabaseServiceProvider::class,
+        ViewServiceProvider::class,
+        CacheServiceProvider::class,
+        RateLimiterServiceProvider::class,
+        MacroServiceProvider::class,
+    ];
+
     /**
      * Create a new Application instance.
      *
@@ -69,73 +88,6 @@ class Application extends AbstractApplication
 
     /**
      * {@inheritdoc}
-     */
-    public function setDefinitions(): array
-    {
-        return [
-            'boot.cache'              => $this->basePath . set_path('bootstrap.cache'),
-            'path.app'                => $this->basePath . set_path('app'),
-            'path.cache'              => $this->basePath . set_path('storage.app.cache'),
-            'path.command'            => $this->basePath . set_path('app.Console.Commands'),
-            'path.component'          => $this->basePath . set_path('resources.components'),
-            'path.controller'         => $this->basePath . set_path('app.Http.Controllers'),
-            'path.exception'          => $this->basePath . set_path('app.Exceptions'),
-            'path.model'              => $this->basePath . set_path('app.Models'),
-            'path.middleware'         => $this->basePath . set_path('app.Middlewares'),
-            'path.provider'           => $this->basePath . set_path('app.Providers'),
-            'path.view'               => $this->basePath . set_path('resources.views'),
-            'path.storage'            => $this->basePath . set_path('storage'),
-            'path.logs'               => $this->basePath . set_path('storage.logs'),
-            'path.public'             => $this->basePath . set_path('public'),
-            'path.migration'          => $this->basePath . set_path('database.migration'),
-            'path.seeder'             => $this->basePath . set_path('database.seeders'),
-            'path.compiled_view_path' => $this->basePath . set_path('storage.app.view'),
-            'path.database'           => $this->basePath . set_path('database'),
-            'paths.view'              => array_map(
-                fn ($p) => $this->basePath . $p,
-                [set_path('resources.views')]
-            ),
-            'environment'             => env('APP_ENV'),
-            'app.debug'               => env('APP_DEBUG'),
-            'app.name'                => env('APP_NAME'),
-            'app.version'             => env('APP_VERSION')
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName(?string $name = null): string
-    {
-        return $name ?? $this->get('app.name');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getVersion(?string $version = null): string
-    {
-        return $version ?? $this->get('app.version');
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @throws BindingResolutionException Thrown when resolving a binding fails.
-     * @throws CircularAliasException Thrown when alias resolution loops recursively.
-     * @throws ContainerExceptionInterface Thrown on general container errors, e.g., service not retrievable.
-     * @throws EntryNotFoundException Thrown when no entry exists for the identifier.
-     * @throws ReflectionException Thrown when the requested class or interface cannot be reflected.
-     */
-    public function getApplicationCachePath(): string
-    {
-        $base = rtrim(get_path('path.base'), "/\\");
-
-        return $base . set_path('bootstrap.cache');
-    }
-
-    /**
-     * {@inheritdoc}
      *
      * @throws BindingResolutionException Thrown when resolving a binding fails.
      * @throws CircularAliasException Thrown when alias resolution loops recursively.
@@ -151,10 +103,29 @@ class Application extends AbstractApplication
     /**
      * {@inheritdoc}
      *
+     * @throws BindingResolutionException Thrown when resolving a binding fails.
      * @throws CircularAliasException Thrown when alias resolution loops recursively.
+     * @throws ContainerExceptionInterface Thrown on general container errors, e.g., service not retrievable.
+     * @throws EntryNotFoundException Thrown when no entry exists for the identifier.
+     * @throws ReflectionException Thrown when the requested class or interface cannot be reflected.
      */
-    public function setConfigPath(): void
+    public function getDownData(): array
     {
-        $this->set('path.config', $this->basePath . set_path('config'));
+        $default = [
+            'redirect' => null,
+            'retry'    => null,
+            'status'   => 503,
+            'template' => null,
+        ];
+
+        $down = get_path('path.storage') . 'app/down';
+        if (!file_exists($down)) {
+            return $default;
+        }
+
+        /** @var array<string, string|int|null> $config */
+        $config = include $down;
+
+        return array_replace($default, $config);
     }
 }

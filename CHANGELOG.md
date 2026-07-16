@@ -12,14 +12,18 @@ This project follows Semantic Versioning.
 
 - Initial release of the Omega Framework.
 
+## [1.0.1] - 2026-07-16
+
 ### Changed
 
-- None.
+- Refactored the Application component by separating kernel-level responsibilities from framework-specific implementations.
 
 ### Fixed
 
-- None.
+- Fixed various namespace issues across the framework components.
 
 ### Removed
 
-- None.
+- Removed the Container package.
+- Removed the Config package.
+- Removed the Environment package.

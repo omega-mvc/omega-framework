@@ -31,7 +31,7 @@ use Throwable;
 use function array_map;
 use function array_merge;
 use function Omega\Application\get_path;
-use function Omega\Support\view;
+use function Omega\View\view;
 
 /**
  * Handles exceptions for the application, including rendering, reporting, and HTTP responses.

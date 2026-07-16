@@ -5,7 +5,7 @@
     xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
     >
     <description>The Omega coding standard. PSR12 + Types</description>
-    <arg name="cache" value="cache/phpcs/phpcs.json" />
+    <arg name="cache" value="/home/morpheus/cache/phpcs/phpcs.json" />
     <arg name="colors" />
     <arg value="p" />
 
