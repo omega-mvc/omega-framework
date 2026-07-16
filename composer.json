@@ -75,15 +75,9 @@
         "phpcbf": "vendor/bin/phpcbf --standard=PSR12 src/ tests/",
         "fix": "composer run phpcbf",
         "test:phpunit": "vendor/bin/phpunit tests",
-        "test:facade": "php ./bin/facade.php facade:update --from-file /resources/facades.php --debug --dry-run",
-        "test:facade:update": "php ./bin/facade.php facade:update --from-file /resources/facades.php --debug",
-        "test:dev": [
-            "@test:facade"
-        ],
         "test": [
             "composer run lint",
-            "composer run test:phpunit",
-            "composer run test:facade"
+            "composer run test:phpunit"
         ],
         "check": "composer run test",
         "ci": [
